@@ -1,0 +1,115 @@
+#!/usr/env/python
+
+#Basic module to generate a galaxy based on passed parameters.
+#Author: mbernhardt@gmail.com
+#Version: 0.1
+
+#Modules
+import math
+import random
+
+#Variables
+
+
+#Functions
+def distance(x1, y1, x2, y2):
+  """Returns a numerical distance between 2 x,y coordinates.
+
+  Args:
+    x1: First point X coordinate.
+    y1: First point Y coordinate.
+    x2: Second point X coordinate.
+    y2: Second point Y coordinate.
+
+  Returns:
+    Distance between 2 sets of points as a float.
+  """
+  return (math.sqrt(math.pow(x1 - x2, 2) + math.pow(y1 - y2, 2)))
+
+def buildmap(num_systems, min_dist_origin, max_dist_origin, min_dist_system,
+             max_dist_system, x_origin, y_origin):
+  """Builds Galaxy Map based on passed criteria.
+
+  Current iteration only returns a set of coordinates for planets. No names or
+  values around planets are determined.
+
+  Args:
+    num_systems: Number of systems to place on map.
+    min_dist_origin: Minimum allowable distance from origin.
+    max_dist_origin: Maximum allowable distance from origin.
+    min_dist_system: Minimum allowable distance from other systems.
+    max_dist_system: Maximum allowable distance from other systems.
+    x_origin: X coordinate of map origin.
+    y_origin: Y coordinate of map origin.
+
+  Returns:
+    2 dimensional array of planet coordinates.
+  """
+  #Initialize array
+  planets = [[0 for z in range(num_systems)] for z in range(num_systems)]
+  max_attempts = 1000
+  for x in range(0, num_systems - 1):
+    #Initial validator
+    valid_system = False
+    attempt = 0
+    while not(valid_system):
+      attempt += 1
+      if (attempt > max_attempts):
+        print "Unable to generate map."
+        print "Failed on %s" % x
+        quit()
+      #Generate random coordinates
+      test_x = (random.randint(0, x_origin * 2))
+      test_y = (random.randint(0, y_origin * 2))
+
+      dist_to_origin = distance(test_x, test_y, x_origin, y_origin)
+
+      if (min_dist_origin < dist_to_origin < max_dist_origin):
+        if (x == 0):
+          planets[x][0] = test_x
+          planets[x][1] = test_y
+          break
+
+        for y in range(0, x):
+          dist_to_system = distance(test_x, test_y, planets[y][0],
+              planets[y][1])
+          if (min_dist_system < dist_to_system < max_dist_system):
+            planets[x][0] = test_x
+            planets[x][1] = test_y
+            valid_system = True
+  return planets
+
+def drawmap(planets, x_origin, y_origin):
+  """Draws a map of based on a set of coordinates.
+
+  Args:
+    planets: 2 dimensional array of planet coordinates.
+    x_origin: X coordinate of origin.
+    y_origin: Y coordinate of origin.
+  """
+  for y in range(0, y_origin * 2):
+    for x in range(0, x_origin * 2):
+      empty = True
+      for z in range(0, len(planets) - 1):
+        if ((planets[z][0] == x) and (planets[z][1] == y)):
+          print("%02d" % z),
+          empty = False
+      if ((x == x_origin) and (y == y_origin)):
+        print('**'),
+      elif (empty):
+        print('..'),
+    print('\n')
+
+if __name__ == "__main__":
+  #Define default values for testing.
+  num_systems = 20
+  min_dist_origin = 3
+  max_dist_origin = 10
+  min_dist_system = 2.5
+  max_dist_system = 5
+  x_origin = 10
+  y_origin = 10
+
+  map = buildmap(num_systems, min_dist_origin, max_dist_origin, min_dist_system,
+                 max_dist_system, x_origin, y_origin)
+  drawmap(map, x_origin, y_origin)
