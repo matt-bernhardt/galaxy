@@ -1,17 +1,18 @@
 #!/usr/env/python
 
-#Basic module to generate a galaxy based on passed parameters.
-#Author: mbernhardt@gmail.com
-#Version: 0.1
+# Basic module to generate a galaxy based on passed parameters.
+# Author: mbernhardt@gmail.com
+# Version: 0.1
 
-#Modules
+# Modules
 import math
 import random
+import planets
 
-#Variables
+# Variables
 
 
-#Functions
+# Functions
 def distance(x1, y1, x2, y2):
   """Returns a numerical distance between 2 x,y coordinates.
 
@@ -45,11 +46,12 @@ def buildmap(num_systems, min_dist_origin, max_dist_origin, min_dist_system,
   Returns:
     2 dimensional array of planet coordinates.
   """
-  #Initialize array
+  # TODO: Build class array directly in buildmap.
+  # Initialize array
   planets = [[0 for z in range(num_systems)] for z in range(num_systems)]
   max_attempts = 1000
   for x in range(0, num_systems - 1):
-    #Initial validator
+    # Initial validator
     valid_system = False
     attempt = 0
     while not(valid_system):
@@ -58,7 +60,7 @@ def buildmap(num_systems, min_dist_origin, max_dist_origin, min_dist_system,
         print "Unable to generate map."
         print "Failed on %s" % x
         quit()
-      #Generate random coordinates
+      # Generate random coordinates
       test_x = (random.randint(0, x_origin * 2))
       test_y = (random.randint(0, y_origin * 2))
 
@@ -83,7 +85,7 @@ def drawmap(planets, x_origin, y_origin):
   """Draws a map of based on a set of coordinates.
 
   Args:
-    planets: 2 dimensional array of planet coordinates.
+    planets: Array of class Planet.
     x_origin: X coordinate of origin.
     y_origin: Y coordinate of origin.
   """
@@ -91,8 +93,8 @@ def drawmap(planets, x_origin, y_origin):
     for x in range(0, x_origin * 2):
       empty = True
       for z in range(0, len(planets) - 1):
-        if ((planets[z][0] == x) and (planets[z][1] == y)):
-          print("%02d" % z),
+        if ((planets[z].x_pos == x) and (planets[z].y_pos == y)):
+          print(" %s" % planets[z].name),
           empty = False
       if ((x == x_origin) and (y == y_origin)):
         print('**'),
@@ -101,15 +103,4 @@ def drawmap(planets, x_origin, y_origin):
     print('\n')
 
 if __name__ == "__main__":
-  #Define default values for testing.
-  num_systems = 20
-  min_dist_origin = 3
-  max_dist_origin = 10
-  min_dist_system = 2.5
-  max_dist_system = 5
-  x_origin = 10
-  y_origin = 10
-
-  map = buildmap(num_systems, min_dist_origin, max_dist_origin, min_dist_system,
-                 max_dist_system, x_origin, y_origin)
-  drawmap(map, x_origin, y_origin)
+  pass
