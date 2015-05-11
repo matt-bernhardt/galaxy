@@ -37,7 +37,10 @@ class Planet():
     self.owner = 'Bar'
     self.x_pos = x
     self.y_pos = y
-    self.output = random.randint(0, 10)
+    if output:
+      self.output = output
+    else:
+      self.output = random.randint(0, 10)
     self.ships = 0
     print('Init completed...')
     print(self.owner)
@@ -53,11 +56,13 @@ class Planet():
   def BuildShips(self):
     """End of turn process of ship generation."""
     self.ships += self.output
+    return self.ships
 
   def SetOwner(self,newOwner):
     """Set owner of planet. Typically after battle."""
     self.owner = newOwner
-    print('New owner set to ' + str(newOwner))
+    print('New owner set to ' + str(self.owner))
+    return self.owner
 
 if __name__ == "__main__":
   pass
