@@ -18,7 +18,10 @@ class TestPlanet(unittest.TestCase):
         self.planet = Planet('A','Foo',0,0,10)
 
     def test_BuildShips(self):
-        self.assertEqual(BuildShips(Planet),10)
+        self.assertEqual(Planet.BuildShips(Planet),10)
+
+    def test_SetOwner(self):
+        self.assertEqual(Planet.SetOwner(Planet,'Fubar'),'Bar')
 
 if __name__ == "__main__":
     unittest.main()
