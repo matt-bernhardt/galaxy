@@ -31,7 +31,7 @@ class Planet():
   ships = 0
 
   # Methods
-  def __init__(self, name, owner, x, y):
+  def __init__(self, name, owner, x, y, output):
     """Initial setup of planet including creation during map generation."""
     self.name = name
     self.owner = owner
@@ -50,7 +50,7 @@ class Planet():
 
   def BuildShips(self):
     """End of turn process of ship generation."""
-    pass
+    self.ships += self.output
 
   def SetOwner(self):
     """Set owner of planet. Typically after battle."""
