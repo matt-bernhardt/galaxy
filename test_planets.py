@@ -14,14 +14,16 @@ from planets import Planet
 # See http://pythontesting.net/framework/unittest/unittest-introduction/
 class TestPlanet(unittest.TestCase):
 
-    def setUp(self):
-        self.planet = Planet('A','Foo',0,0,10)
+  def setUp(self):
+    self.planet = Planet('A', 'Foo', 0, 0, 10)
 
-    def test_BuildShips(self):
-        self.assertEqual(Planet.BuildShips(self.planet),10)
+  def test_BuildShips(self):
+    Planet.BuildShips(self.planet)
+    self.assertEqual(self.planet.ships, 10)
 
-    def test_SetOwner(self):
-        self.assertEqual(Planet.SetOwner(self.planet,'Fubar'),'Fubar')
+  def test_SetOwner(self):
+    Planet.SetOwner(self.planet, 'Fubar')
+    self.assertEqual(self.planet.owner, 'Fubar')
 
 if __name__ == "__main__":
     unittest.main()

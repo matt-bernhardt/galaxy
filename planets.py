@@ -34,7 +34,7 @@ class Planet():
   def __init__(self, name, owner, x, y, output):
     """Initial setup of planet including creation during map generation."""
     self.name = name
-    self.owner = 'Bar'
+    self.owner = owner
     self.x_pos = x
     self.y_pos = y
     if output:
@@ -42,8 +42,6 @@ class Planet():
     else:
       self.output = random.randint(0, 10)
     self.ships = 0
-    print('Init completed...')
-    print(self.owner)
 
   def FleetArrival(self):
     """Fleet arrival on planet. Check for battle conditions."""
@@ -56,13 +54,10 @@ class Planet():
   def BuildShips(self):
     """End of turn process of ship generation."""
     self.ships += self.output
-    return self.ships
 
   def SetOwner(self,newOwner):
     """Set owner of planet. Typically after battle."""
     self.owner = newOwner
-    print('New owner set to ' + str(self.owner))
-    return self.owner
 
 if __name__ == "__main__":
   pass
