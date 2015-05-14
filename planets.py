@@ -44,26 +44,13 @@ class Planet():
       self.output = output
     self.ships = 0
 
-  def FleetArrival(self, fleet):
+  def AddShips(self, ships):
     """Fleet arrival on planet. Check for battle conditions."""
-    pass
+    self.ships += ships
 
-  def FleetDeparture(self, planet_list, destination, ships):
-    """Create fleet and subtract ship(s) from population.
-
-    Args:
-      planet_list: Array of type Planet
-      destination: Name of destination planet as string.
-      ships: Number of ships to add to fleet as integer.
-
-    Returns:
-      Fleet
-    """
-    travel_time = galaxy_lib.PlanetDistance(planet_list, self.name,
-        destination, True)
-    newFleet = fleets.Fleet(ships, self.owner, destination, travel_time)
+  def RemoveShips(self, ships):
+    """Create fleet and subtract ship(s) from population."""
     self.ships -= ships
-    return newFleet
 
   def BuildShips(self):
     """End of turn process of ship generation."""

@@ -13,7 +13,7 @@ import planets
 
 
 # Functions
-def buildmap(num_systems, min_dist_origin, max_dist_origin, min_dist_system,
+def BuildMap(num_systems, min_dist_origin, max_dist_origin, min_dist_system,
              max_dist_system, x_origin, y_origin):
   """Builds Galaxy Map based on passed criteria.
 
@@ -32,7 +32,7 @@ def buildmap(num_systems, min_dist_origin, max_dist_origin, min_dist_system,
   Returns:
     2 dimensional array of planet coordinates.
   """
-  # TODO: Build class array directly in buildmap.
+  # TODO: Build class array directly in BuildMap.
   # Initialize array
   planets = [[0 for z in range(num_systems)] for z in range(num_systems)]
   max_attempts = 1000
@@ -67,7 +67,7 @@ def buildmap(num_systems, min_dist_origin, max_dist_origin, min_dist_system,
             valid_system = True
   return planets
 
-def drawmap(planets, x_origin, y_origin):
+def DrawMap(planets, x_origin, y_origin):
   """Draws a map of based on a set of coordinates.
 
   Args:

@@ -5,6 +5,7 @@
 # Version: 0.1
 
 # Modules
+import fleets
 import math
 
 # Variables
@@ -43,12 +44,24 @@ def PlanetDistance(planet_list, planet_a_name, planet_b_name, roundup=False):
   return None
 
 def GetPlanetByName(planet_list, planet_name):
-  """Lookup planet by name.
-  Not sure if this should go here or in planets.py"""
+  """Lookup planet by name."""
   for planet in planet_list:
     if planet.name == planet_name:
       return planet
   return None
+
+def CreateFleet(planet_list, planet_name, ships, destination):
+  if GetPlanetByName(planet_list, planet_name) and GetPlanetByName(planet_list,
+      destination):
+    planet = GetPlanetByName(planet_list, planet_name)
+    if planet.ships >= ships:
+      planet.RemoveShips(ships)
+      return fleets.Fleet(ships, planet.owner, destination,
+          PlanetDistance(planet_list, planet_name, destination, True))
+    else:
+      return None
+  else:
+    return None
 
 
 if __name__ == "__main__":

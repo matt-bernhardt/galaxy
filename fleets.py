@@ -37,7 +37,7 @@ class Fleet():
     """Movement of fleet at end of turn."""
     if self.travel_time > 0:
       self.travel_time -= 1
-    else:
+    if self.travel_time == 0:
       self.arrived = True
 
 

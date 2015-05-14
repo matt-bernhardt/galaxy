@@ -25,11 +25,17 @@ class TestPlanet(unittest.TestCase):
     Planet.SetOwner(self.planet, 'Fubar')
     self.assertEqual(self.planet.owner, 'Fubar')
 
-  def test_FleetArrival(self):
-    pass
+  def test_AddShips(self):
+    Planet.AddShips(self.planet, 5)
+    self.assertEqual(self.planet.ships, 5)
+    Planet.AddShips(self.planet, 10)
+    self.assertEqual(self.planet.ships, 15)
 
-  def test_FleetDeparture(self):
-    pass
+  def test_RemoveShips(self):
+    Planet.AddShips(self.planet, 20)
+    self.assertEqual(self.planet.ships, 20)
+    Planet.RemoveShips(self.planet, 5)
+    self.assertEqual(self.planet.ships, 15)
 
 
 if __name__ == "__main__":

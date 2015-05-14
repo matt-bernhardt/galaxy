@@ -27,17 +27,37 @@ class TestGalaxy_Lib(unittest.TestCase):
   def test_PlanetDistance(self):
     self.assertEqual(galaxy_lib.PlanetDistance(planet_list, 'A', 'B'),
                      4.123105625617661)
+    self.assertEqual(galaxy_lib.PlanetDistance(planet_list, 'A', 'B', True), 5)
     self.assertEqual(galaxy_lib.PlanetDistance(planet_list, 'A', 'C'),
                      3.605551275463989)
-    self.assertEqual(galaxy_lib.PlanetDistance(planet_list, 'C', 'B'),
-                     7.211102550927978)
+    # Invalid planet
     self.assertEqual(galaxy_lib.PlanetDistance(planet_list, 'A', 'D'), None)
+    self.assertEqual(galaxy_lib.PlanetDistance(planet_list, 'D', 'B', True),
+        None)
 
   def test_GetPlanetByName(self):
     self.assertEqual(galaxy_lib.GetPlanetByName(planet_list, 'A').owner, 'Foo')
     self.assertEqual(galaxy_lib.GetPlanetByName(planet_list, 'B').output, 7)
     self.assertEqual(galaxy_lib.GetPlanetByName(planet_list, 'D'), None)
 
+  def test_CreateFleet(self):
+    # Generate some ships on planet A
+    Planet.BuildShips(galaxy_lib.GetPlanetByName(planet_list, 'A'))
+    # Not enough ships
+    self.assertEqual(galaxy_lib.CreateFleet(planet_list, 'A', 20, 'B'), None)
+    # Invalid origin
+    self.assertEqual(galaxy_lib.CreateFleet(planet_list, 'D', 20, 'B'), None)
+    # Invalud destination
+    self.assertEqual(galaxy_lib.CreateFleet(planet_list, 'A', 5, 'D'), None)
+    # Success Test
+    fleet = galaxy_lib.CreateFleet(planet_list, 'A', 5, 'B')
+    # Check planet
+    self.assertEqual(galaxy_lib.GetPlanetByName(planet_list, 'A').ships, 5)
+    # Check fleet
+    self.assertEqual(fleet.ships, 5)
+    self.assertEqual(fleet.owner, 'Foo')
+    self.assertEqual(fleet.destination, 'B')
+    self.assertEqual(fleet.travel_time, 5)
 
 if __name__ == "__main__":
     unittest.main()

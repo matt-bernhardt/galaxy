@@ -23,7 +23,9 @@ class TestFleet(unittest.TestCase):
     self.assertEqual(self.fleet.arrived, False)
 
   def test_FleetArrival(self):
-    self.fleet.travel_time = 0
+    self.fleet.travel_time = 2
+    Fleet.MoveFleet(self.fleet)
+    self.assertEqual(self.fleet.arrived, False)
     Fleet.MoveFleet(self.fleet)
     self.assertEqual(self.fleet.travel_time, 0)
     self.assertEqual(self.fleet.arrived, True)
