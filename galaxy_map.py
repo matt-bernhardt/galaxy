@@ -5,7 +5,7 @@
 # Version: 0.1
 
 # Modules
-import math
+import galaxy_lib
 import random
 import planets
 
@@ -13,20 +13,6 @@ import planets
 
 
 # Functions
-def distance(x1, y1, x2, y2):
-  """Returns a numerical distance between 2 x,y coordinates.
-
-  Args:
-    x1: First point X coordinate.
-    y1: First point Y coordinate.
-    x2: Second point X coordinate.
-    y2: Second point Y coordinate.
-
-  Returns:
-    Distance between 2 sets of points as a float.
-  """
-  return (math.sqrt(math.pow(x1 - x2, 2) + math.pow(y1 - y2, 2)))
-
 def buildmap(num_systems, min_dist_origin, max_dist_origin, min_dist_system,
              max_dist_system, x_origin, y_origin):
   """Builds Galaxy Map based on passed criteria.
@@ -64,7 +50,7 @@ def buildmap(num_systems, min_dist_origin, max_dist_origin, min_dist_system,
       test_x = (random.randint(0, x_origin * 2))
       test_y = (random.randint(0, y_origin * 2))
 
-      dist_to_origin = distance(test_x, test_y, x_origin, y_origin)
+      dist_to_origin = galaxy_lib.Distance(test_x, test_y, x_origin, y_origin)
 
       if (min_dist_origin < dist_to_origin < max_dist_origin):
         if (x == 0):
@@ -73,7 +59,7 @@ def buildmap(num_systems, min_dist_origin, max_dist_origin, min_dist_system,
           break
 
         for y in range(0, x):
-          dist_to_system = distance(test_x, test_y, planets[y][0],
+          dist_to_system = galaxy_lib.Distance(test_x, test_y, planets[y][0],
               planets[y][1])
           if (min_dist_system < dist_to_system < max_dist_system):
             planets[x][0] = test_x
@@ -101,6 +87,7 @@ def drawmap(planets, x_origin, y_origin):
       elif (empty):
         print('..'),
     print('\n')
+
 
 if __name__ == "__main__":
   pass

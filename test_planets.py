@@ -25,5 +25,12 @@ class TestPlanet(unittest.TestCase):
     Planet.SetOwner(self.planet, 'Fubar')
     self.assertEqual(self.planet.owner, 'Fubar')
 
+  def test_FleetArrival(self):
+    pass
+
+  def test_FleetDeparture(self):
+    pass
+
+
 if __name__ == "__main__":
     unittest.main()

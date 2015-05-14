@@ -6,12 +6,14 @@
 # Version: 0.1
 
 # Modules
+import galaxy_lib
 import galaxy_map
 import planets
 import fleets
 
 # Variables
 planet_list = []
+fleet_list = []
 
 # Functions
 def GenerateMap():
@@ -31,6 +33,7 @@ def GenerateMap():
         item[1]))
     x += 1
   return planet_array
+
 
 if __name__ == "__main__":
   # Define default values for testing.
