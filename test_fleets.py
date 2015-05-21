@@ -30,6 +30,22 @@ class TestFleet(unittest.TestCase):
     self.assertEqual(self.fleet.travel_time, 0)
     self.assertEqual(self.fleet.arrived, True)
 
+  def test_AddShips(self):
+    Fleet.AddShips(self.fleet, 5)
+    self.assertEqual(self.fleet.ships, 105)
+
+  def test_RemoveShips(self):
+    self.assertEqual(self.fleet.ships, 100)
+    Fleet.RemoveShips(self.fleet, 50)
+    self.assertEqual(self.fleet.ships, 50)
+    self.assertEqual(self.fleet.destroyed, False)
+
+  def test_DestroyFleet(self):
+    self.assertEqual(self.fleet.ships, 100)
+    Fleet.RemoveShips(self.fleet, 200)
+    self.assertEqual(self.fleet.ships, 0)
+    self.assertEqual(self.fleet.destroyed, True)
+
 
 if __name__ == "__main__":
     unittest.main()

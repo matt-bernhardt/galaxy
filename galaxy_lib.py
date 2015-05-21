@@ -30,7 +30,19 @@ def Distance(x1, y1, x2, y2, roundup=False):
     return distance
 
 def PlanetDistance(planet_list, planet_a_name, planet_b_name, roundup=False):
-  """Wrapper for distance for lookups by planet."""
+  """Wrapper for distance for lookups by planet.
+
+  Args:
+    planet_list: Array of type planet.
+    planet_a_name: String name of first planet.
+    planet_b_name: String name of second planet.
+    roundup: Optional boolean for whether distance is to be rounded up to
+        nearest int.
+
+  Returns:
+    Distance between 2 selected planets. Rounded up to nearest int if roundup is
+        True.
+  """
   planet_a = None
   planet_b = None
   for planet in planet_list:
@@ -44,13 +56,32 @@ def PlanetDistance(planet_list, planet_a_name, planet_b_name, roundup=False):
   return None
 
 def GetPlanetByName(planet_list, planet_name):
-  """Lookup planet by name."""
+  """Lookup planet by name.
+
+  Args:
+    planet_list: Array of type planet.
+    planet_name: String name of planet.
+
+  Returns:
+    Object of type planet.
+  """
   for planet in planet_list:
     if planet.name == planet_name:
       return planet
   return None
 
 def CreateFleet(planet_list, planet_name, ships, destination):
+  """Create a fleet from a planet. Includes check for capacity of fleet.
+
+  Args:
+    planet_list: Array of type planet.
+    planet_name: String name of planet of origin.
+    ships: Number of ships to add to fleet.
+    destination: String name of destination planet.
+
+  Returns:
+    Object of type fleet.
+  """
   if GetPlanetByName(planet_list, planet_name) and GetPlanetByName(planet_list,
       destination):
     planet = GetPlanetByName(planet_list, planet_name)

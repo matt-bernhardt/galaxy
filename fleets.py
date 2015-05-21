@@ -24,6 +24,7 @@ class Fleet():
   destination = 'none'
   travel_time = 0
   arrived = False
+  destroyed = False
 
   #Methods
   def __init__(self, ships, owner, destination, travel_time):
@@ -32,6 +33,7 @@ class Fleet():
     self.destination = destination
     self.travel_time = travel_time
     arrived = False
+    destroyed = False
 
   def MoveFleet(self):
     """Movement of fleet at end of turn."""
@@ -39,6 +41,26 @@ class Fleet():
       self.travel_time -= 1
     if self.travel_time == 0:
       self.arrived = True
+
+  def AddShips(self, ships):
+    """Add ship(s) to fleet.
+
+    Args:
+      ships: Number of ships.
+    """
+    self.ships += ships
+
+  def RemoveShips(self, ships):
+    """Remove ship(s) from fleet.
+
+    Args:
+      ships: Number of ships.
+    """
+    if ships >= self.ships:
+      self.ships = 0
+      self.destroyed = True
+    else:
+      self.ships -= ships
 
 
 if __name__ == "__main__":

@@ -36,6 +36,9 @@ class TestPlanet(unittest.TestCase):
     self.assertEqual(self.planet.ships, 20)
     Planet.RemoveShips(self.planet, 5)
     self.assertEqual(self.planet.ships, 15)
+    # Test removing more ships than present on planet.
+    Planet.RemoveShips(self.planet, 20)
+    self.assertEqual(self.planet.ships, 0)
 
 
 if __name__ == "__main__":

@@ -45,19 +45,34 @@ class Planet():
     self.ships = 0
 
   def AddShips(self, ships):
-    """Fleet arrival on planet. Check for battle conditions."""
+    """Add ship(s) to population.
+
+    Args:
+      ships: Number of ships.
+    """
     self.ships += ships
 
   def RemoveShips(self, ships):
-    """Create fleet and subtract ship(s) from population."""
-    self.ships -= ships
+    """Subtract ship(s) from population.
+
+    Args:
+      ships: Number of ships.
+    """
+    if ships >= self.ships:
+      self.ships = 0
+    else:
+      self.ships -= ships
 
   def BuildShips(self):
     """End of turn process of ship generation."""
     self.ships += self.output
 
   def SetOwner(self, newOwner):
-    """Set owner of planet. Typically after battle."""
+    """Set owner of planet. Typically after battle.
+
+    Args:
+      newOwner: String of owner to set on planet.
+    """
     self.owner = newOwner
 
 
