@@ -46,5 +46,7 @@ def Battle(fleet, planet):
         break
   if fleet.ships == 0:
     # Defender wins
+    pass
   if planet.ships == 0:
     # Attacker wins
+    pass
