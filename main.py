@@ -6,12 +6,14 @@
 # Version: 0.1
 
 # Modules
+import galaxy_lib
 import galaxy_map
 import planets
 import fleets
 
 # Variables
 planet_list = []
+fleet_list = []
 
 # Functions
 def GenerateMap():
@@ -25,12 +27,13 @@ def GenerateMap():
   planet_array = []
   x = 0
 
-  for item in galaxy_map.buildmap(num_systems, min_dist_origin, max_dist_origin,
+  for item in galaxy_map.BuildMap(num_systems, min_dist_origin, max_dist_origin,
       min_dist_system, max_dist_system, x_origin, y_origin):
     planet_array.append(planets.Planet(chr(ord('A') + x), "none", item[0],
         item[1]))
     x += 1
   return planet_array
+
 
 if __name__ == "__main__":
   # Define default values for testing.
@@ -43,4 +46,4 @@ if __name__ == "__main__":
   y_origin = 10
 
   planet_list = GenerateMap()
-  galaxy_map.drawmap(planet_list, x_origin, y_origin)
+  galaxy_map.DrawMap(planet_list, x_origin, y_origin)

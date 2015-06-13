@@ -14,14 +14,32 @@ from planets import Planet
 # See http://pythontesting.net/framework/unittest/unittest-introduction/
 class TestPlanet(unittest.TestCase):
 
-    def setUp(self):
-        self.planet = Planet('A','Foo',0,0,10)
+  def setUp(self):
+    self.planet = Planet('A', 'Foo', 0, 0, 10)
 
-    def test_BuildShips(self):
-        self.assertEqual(Planet.BuildShips(Planet),10)
+  def test_BuildShips(self):
+    Planet.BuildShips(self.planet)
+    self.assertEqual(self.planet.ships, 10)
 
-    def test_SetOwner(self):
-        self.assertEqual(Planet.SetOwner(Planet,'Fubar'),'Bar')
+  def test_SetOwner(self):
+    Planet.SetOwner(self.planet, 'Fubar')
+    self.assertEqual(self.planet.owner, 'Fubar')
+
+  def test_AddShips(self):
+    Planet.AddShips(self.planet, 5)
+    self.assertEqual(self.planet.ships, 5)
+    Planet.AddShips(self.planet, 10)
+    self.assertEqual(self.planet.ships, 15)
+
+  def test_RemoveShips(self):
+    Planet.AddShips(self.planet, 20)
+    self.assertEqual(self.planet.ships, 20)
+    Planet.RemoveShips(self.planet, 5)
+    self.assertEqual(self.planet.ships, 15)
+    # Test removing more ships than present on planet.
+    Planet.RemoveShips(self.planet, 20)
+    self.assertEqual(self.planet.ships, 0)
+
 
 if __name__ == "__main__":
     unittest.main()

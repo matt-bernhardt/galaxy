@@ -5,6 +5,7 @@
 # Version: 0.1
 
 # Modules
+import galaxy_lib
 import fleets
 import random
 
@@ -31,33 +32,49 @@ class Planet():
   ships = 0
 
   # Methods
-  def __init__(self, name, owner, x, y, output):
+  def __init__(self, name, owner, x, y, output=None):
     """Initial setup of planet including creation during map generation."""
     self.name = name
-    self.owner = 'Bar'
+    self.owner = owner
     self.x_pos = x
     self.y_pos = y
-    self.output = random.randint(0, 10)
+    if output == None:
+      self.output = random.randint(0, 10)
+    else:
+      self.output = output
     self.ships = 0
-    print('Init completed...')
-    print(self.owner)
 
-  def FleetArrival(self):
-    """Fleet arrival on planet. Check for battle conditions."""
-    pass
+  def AddShips(self, ships):
+    """Add ship(s) to population.
 
-  def FleetDeparture(self):
-    """Create fleet and subtract ship(s) from population."""
-    pass
+    Args:
+      ships: Number of ships.
+    """
+    self.ships += ships
+
+  def RemoveShips(self, ships):
+    """Subtract ship(s) from population.
+
+    Args:
+      ships: Number of ships.
+    """
+    if ships >= self.ships:
+      self.ships = 0
+    else:
+      self.ships -= ships
 
   def BuildShips(self):
     """End of turn process of ship generation."""
     self.ships += self.output
 
-  def SetOwner(self,newOwner):
-    """Set owner of planet. Typically after battle."""
+  def SetOwner(self, newOwner):
+    """Set owner of planet. Typically after battle.
+
+    Args:
+      newOwner: String of owner to set on planet.
+    """
     self.owner = newOwner
-    print('New owner set to ' + str(newOwner))
+
 
 if __name__ == "__main__":
   pass
