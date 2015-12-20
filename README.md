@@ -1,7 +1,12 @@
 ### G A L A X Y
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![Build Status](https://travis-ci.org/matt-bernhardt/galaxy.svg)](https://travis-ci.org/matt-bernhardt/galaxy) [![Coverage Status](https://coveralls.io/repos/matt-bernhardt/galaxy/badge.svg?branch=master&service=github)](https://coveralls.io/github/matt-bernhardt/galaxy?branch=master) [![Code Climate](https://codeclimate.com/github/matt-bernhardt/galaxy/badges/gpa.svg)](https://codeclimate.com/github/matt-bernhardt/galaxy) [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 We are attempting to rebuild a computer game from the 80s, Galaxy, in Python.
+
+More information about this project is at [http://matt-bernhardt.github.io/galaxy/](http://matt-bernhardt.github.io/galaxy/). 
+
+[The original game is preserved at the Internet Archive](https://archive.org/details/a2_Galaxy_1981_Avalon_Hill)
+
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
