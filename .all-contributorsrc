@@ -18,6 +18,16 @@
         "code",
         "maintenance"
       ]
+    },
+    {
+      "login": "mbernhardt6",
+      "name": "Mark Bernhardt",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/10909798?v=4",
+      "profile": "https://github.com/mbernhardt6",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7
